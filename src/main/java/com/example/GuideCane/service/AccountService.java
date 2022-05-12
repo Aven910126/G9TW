@@ -47,12 +47,12 @@ public class AccountService {
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-    public Account createProduct(Account request) {
-        Account account = new Account();
-        account.setName(request.getName());
-        account.setPassword(request.getPassword());
-        account.setDeviceCode(request.getDeviceCode());
-
-        return accountRepository.save(account);
-    }
+//    public Account createAccount(Account request) {
+//        Account account = new Account();
+//        account.setUsername(request.getUsername());
+//        account.setPassword(request.getPassword());
+//        account.setDevicecode(request.getDevicecode());
+//
+//        return accountRepository.save(account);
+//    }
 }

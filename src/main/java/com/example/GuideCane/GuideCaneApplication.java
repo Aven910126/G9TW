@@ -7,13 +7,14 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
+@EnableWebMvc
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"<com.example.GuideCane>"})
-@EnableJpaRepositories(basePackages="<com.example.GuideCane.repository>")
 @EnableTransactionManagement
-@EntityScan(basePackages="<com.example.GuideCane.model>")
 public class GuideCaneApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GuideCaneApplication.class, args);

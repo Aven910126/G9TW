@@ -9,6 +9,8 @@ import javax.sql.DataSource;
 import com.example.GuideCane.repository.AccountRepository;
 import com.example.GuideCane.model.Account;
 import com.example.GuideCane.service.AccountService;
+import com.example.GuideCane.dto.AccountDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,32 +23,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value ="/account",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("/account")
 public class AccountController {
 
     @Autowired
     private AccountRepository accountRepository;
     private AccountService accountService;
-    DataSource dataSource;
 
-    AccountController(){
+    @PostMapping("/create")
+    public ResponseEntity<Account> createProduct(@RequestBody AccountDTO accountDTO) {
+        try{
+            String username=accountDTO.getUsername();
+            String password=accountDTO.getPassword();
+            String deviceCode=accountDTO.getDeviceCode();
+            System.out.println(username);
+            System.out.println(password);
+            System.out.println(deviceCode);
+            System.out.println(accountRepository.findByDeviceCode(deviceCode)==null);
+            if(accountRepository.findByDeviceCode(deviceCode)!=null){
+                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            }else{
 
-    }
-    AccountController(AccountRepository accountRepository,AccountService accountService,DataSource dataSource){
-        this.accountRepository = accountRepository;
-        this.accountService = accountService;
-        this.dataSource = dataSource;
-    }
-    @PostMapping
-    public ResponseEntity<Account> createProduct(@RequestBody Account request) {
-        Account account = accountService.createProduct(request);
+                Account account = accountRepository.save(new Account(deviceCode,username,password));
+                return new ResponseEntity<>(account, HttpStatus.CREATED);
+            }
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(account.getId())
-                .toUri();
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
-        return ResponseEntity.created(location).body(account);
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest()
+//                .path("/{id}")
+//                .buildAndExpand(account.getId())
+//                .toUri();
+//
+//        return ResponseEntity.created(location).body(account);
     }
 }
