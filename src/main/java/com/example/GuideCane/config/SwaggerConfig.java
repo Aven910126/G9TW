@@ -40,7 +40,7 @@ public class SwaggerConfig {
                 .version("0.0.1")
                 .license("MIT LICENSE 2.0")
                 .licenseUrl("https://github.com/aven910126")
-                .contact(new Contact("Aven Parking", "https://github.com/aven910126", "b10923003@gemail.yuntech.edu.tw"))
+                .contact(new Contact("Aven", "https://github.com/aven910126", "b10923003@gemail.yuntech.edu.tw"))
                 .build();
     }
 

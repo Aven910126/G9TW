@@ -16,15 +16,16 @@ public class Account {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    @Column(name="devicecode",unique = true)
-    private String deviceCode;
+    @OneToOne
+    @JoinColumn(name = "devicecode")
+    private Device deviceCode;
     @Column(name="username")
     private String username;
     @Column(name="password")
     private String password;
 
-    public Account(String devicecode, String username, String password) {
-        this.deviceCode = devicecode;
+    public Account(Device device, String username, String password) {
+        this.deviceCode = device;
         this.username = username;
         this.password = password;
     }
