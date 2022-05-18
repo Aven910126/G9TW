@@ -7,7 +7,9 @@ import javax.sql.DataSource;
 
 import com.example.GuideCane.dto.EmergencyContactDTO;
 import com.example.GuideCane.dto.RelationshipDTO;
+import com.example.GuideCane.model.Device;
 import com.example.GuideCane.model.EmergencyContact;
+import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.EmergencyContactRepository;
 import com.example.GuideCane.service.EmergencyContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +23,27 @@ public class EmergencyContactController {
 
     @Autowired
     private EmergencyContactRepository emergencyContactRepository;
+    @Autowired
     private EmergencyContactService emergencyContactService;
-
+    @Autowired
+    private DeviceRepository deviceRepository;
     @PostMapping("/create")
     public ResponseEntity<EmergencyContact> createEmergencyContact(@RequestBody EmergencyContactDTO emergencyContactDTO) {
         try{
             String contactPerson=emergencyContactDTO.getContactPerson();
             String contactNo=emergencyContactDTO.getContactNo();
-            String deviceCode=emergencyContactDTO.getDeviceCode();
+            Device deviceCode=deviceRepository.findByDeviceCode(emergencyContactDTO.getDeviceCode());
             String relationship=emergencyContactDTO.getRelationship();
             if(emergencyContactRepository.findOneByRelationshipAndContactNo(relationship,contactNo)!=null){
-                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(null, HttpStatus.CREATED);
             }else{
-
-                EmergencyContact emergencyContact = emergencyContactRepository.save(new EmergencyContact(deviceCode,contactPerson,contactNo,relationship));
-                return new ResponseEntity<>(emergencyContact, HttpStatus.CREATED);
+                if(deviceCode!=null){
+                    EmergencyContact emergencyContact = emergencyContactRepository.save(new EmergencyContact(deviceCode,contactPerson,contactNo,relationship));
+                    return new ResponseEntity<>(emergencyContact, HttpStatus.OK);
+                }
+                else{
+                    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }
 
         }catch (Exception e){
