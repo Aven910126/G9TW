@@ -46,7 +46,7 @@ public class HeartBeatController {
                 return new ResponseEntity<>(heartBeat, HttpStatus.OK);
             }
             else{
-                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
