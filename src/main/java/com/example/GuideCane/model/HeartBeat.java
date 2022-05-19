@@ -8,12 +8,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @Table(name = "heartBeat")
 public class HeartBeat {

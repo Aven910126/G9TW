@@ -1,11 +1,8 @@
 package com.example.GuideCane.dto;
 
 import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class GpsDTO {
     private String deviceCode;

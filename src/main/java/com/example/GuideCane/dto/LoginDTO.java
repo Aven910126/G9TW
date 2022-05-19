@@ -2,8 +2,7 @@ package com.example.GuideCane.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @Data
 @AllArgsConstructor

@@ -4,12 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
 @Table(name = "emergencyContact")
 public class EmergencyContact {
