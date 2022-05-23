@@ -8,6 +8,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HeartbeatDTO {
-    private String deviceCode;
+    private long deviceCode;
     private String heartBeatValue;
 }

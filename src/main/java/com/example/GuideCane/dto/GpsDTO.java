@@ -5,7 +5,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GpsDTO {
-    private String deviceCode;
+    private long deviceCode;
     private String longitude;
     private String latitude;
 }

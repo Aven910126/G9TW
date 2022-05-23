@@ -16,7 +16,7 @@ public class EmergencyContact {
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
-    private Device deviceCode;
+    private Account deviceCode;
     @Column(name="contactPerson")
     private String contactPerson;
     @Column(name="contactNo")
@@ -24,7 +24,7 @@ public class EmergencyContact {
     @Column(name="Relationship")
     private String relationship;
 
-    public EmergencyContact(Device deviceCode, String contactPerson, String contactNo, String relationship) {
+    public EmergencyContact(Account deviceCode, String contactPerson, String contactNo, String relationship) {
         this.deviceCode = deviceCode;
         this.contactPerson = contactPerson;
         this.contactNo = contactNo;

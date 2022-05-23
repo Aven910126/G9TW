@@ -1,35 +1,36 @@
 package com.example.GuideCane.model;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.sql.Timestamp;
-
 
 @NoArgsConstructor
 @Entity
 @Data
 @AllArgsConstructor
-@Table(name = "gps")
-public class Gps {
+@Table(name = "image")
+public class Image {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
     private Account deviceCode;
-    @Column(name="longitude")
-    private String longitude;
-    @Column(name="latitude")
-    private String latitude;
+    @Lob
+    @Column(name="imagedata")
+    private Blob imageData;
     @CreationTimestamp
     @Column(name="createTime")
     private Timestamp createTime;
 
-    public Gps(Account deviceCode, String longitude, String latitude) {
+    public Image(Account deviceCode, Blob imageData) {
         this.deviceCode = deviceCode;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.imageData = imageData;
     }
 }

@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 public class EmergencyContactDTO {
-    private String deviceCode;
+    private long deviceCode;
     private String contactPerson;
     private String contactNo;
     private String relationship;
