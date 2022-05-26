@@ -2,6 +2,7 @@ package com.example.GuideCane.controller;
 import java.util.List;
 
 import com.example.GuideCane.dto.EmergencyContactDTO;
+import com.example.GuideCane.dto.SosDTO;
 import com.example.GuideCane.model.EmergencyContact;
 import com.example.GuideCane.repository.AccountRepository;
 import com.example.GuideCane.repository.EmergencyContactRepository;
@@ -21,6 +22,8 @@ public class EmergencyContactController {
     private EmergencyContactService emergencyContactService;
     @Autowired
     private AccountRepository accountRepository;
+
+    EmergencyContact e = null;
     @PostMapping("/create")
     public ResponseEntity<EmergencyContact> createEmergencyContact(@RequestBody EmergencyContactDTO emergencyContactDTO) {
         try{
@@ -35,10 +38,26 @@ public class EmergencyContactController {
         }
     }
 
+//    @PostMapping("/sos")
+//    public ResponseEntity<EmergencyContact> sos(@RequestBody SosDTO sosDTO) {
+//        try{
+//            EmergencyContact emergencyContact = emergencyContactService.sos(sosDTO);
+//            e = emergencyContact;
+//            if(emergencyContact == null){
+//                return new ResponseEntity<>(null, HttpStatus.CREATED);
+//            }else{
+//                return new ResponseEntity<>(emergencyContact, HttpStatus.OK);
+//            }
+//        }catch (Exception e){
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     @GetMapping("/find/{devicecode}")
     public ResponseEntity<List<EmergencyContact>> findEmergencyContact(@PathVariable("devicecode") long devicecode) {
         try{
             List<EmergencyContact> emergencyContact = emergencyContactService.findAllEmergencyContact(devicecode);
+
             return new ResponseEntity<>(emergencyContact, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

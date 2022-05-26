@@ -25,10 +25,39 @@ public class GpsService {
     public Gps createGps(GpsDTO gpsDTO){
         String longitude = gpsDTO.getLongitude();
         String latitude = gpsDTO.getLatitude();
+        Boolean sosInfo = false;
         Optional<Account> devicecode = accountRepository.findById(gpsDTO.getDeviceCode());
         if(devicecode != null){
-            Gps gps = gpsRepository.save(new Gps(devicecode.get(),longitude,latitude));
+            Gps gps = gpsRepository.save(new Gps(devicecode.get(),longitude,latitude,sosInfo));
             return gps;
+        }
+        else{
+            return null;
+        }
+    }
+    public Gps createSos(Gps gps){
+        String longitude = gps.getLongitude();
+        String latitude = gps.getLatitude();
+        Gps sos = gpsRepository.findMaxTimeGps(gps.getDeviceCode());
+        sos.setSosInfo(true);
+        Account devicecode = gps.getDeviceCode();
+        if(devicecode != null){
+            Gps g = gpsRepository.save(sos);
+            return g;
+        }
+        else{
+            return null;
+        }
+    }
+    public Gps relievesos(Gps gps){
+        String longitude = gps.getLongitude();
+        String latitude = gps.getLatitude();
+        Gps sos = gpsRepository.findMaxTimeGps(gps.getDeviceCode());
+        sos.setSosInfo(false);
+        Account devicecode = gps.getDeviceCode();
+        if(devicecode != null){
+            Gps g = gpsRepository.save(sos);
+            return g;
         }
         else{
             return null;

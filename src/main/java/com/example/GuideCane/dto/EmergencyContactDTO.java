@@ -9,5 +9,6 @@ public class EmergencyContactDTO {
     private long deviceCode;
     private String contactPerson;
     private String contactNo;
+    private String email;
     private String relationship;
 }
