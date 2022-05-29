@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.example.GuideCane.dto.HeartbeatDTO;
 import com.example.GuideCane.model.HeartBeat;
-import com.example.GuideCane.repository.AccountRepository;
+import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.HeartBeatRepository;
 import com.example.GuideCane.service.HeartBeatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class HeartBeatController {
     private HeartBeatRepository heartBeatRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private DeviceRepository deviceRepository;
 
     @Autowired
     private HeartBeatService heartBeatService;

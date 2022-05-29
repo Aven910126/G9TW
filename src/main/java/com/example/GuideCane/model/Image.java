@@ -21,7 +21,7 @@ public class Image {
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
-    private Account deviceCode;
+    private Device deviceCode;
     @Lob
     @Column(name="imagedata")
     private Blob imageData;
@@ -29,7 +29,7 @@ public class Image {
     @Column(name="createTime")
     private Timestamp createTime;
 
-    public Image(Account deviceCode, Blob imageData) {
+    public Image(Device deviceCode, Blob imageData) {
         this.deviceCode = deviceCode;
         this.imageData = imageData;
     }

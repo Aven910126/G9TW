@@ -3,7 +3,7 @@ package com.example.GuideCane.controller;
 import com.example.GuideCane.dto.GpsDTO;
 import com.example.GuideCane.model.EmergencyContact;
 import com.example.GuideCane.model.Gps;
-import com.example.GuideCane.repository.AccountRepository;
+import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.GpsRepository;
 import com.example.GuideCane.service.EmergencyContactService;
 import com.example.GuideCane.service.GpsService;
@@ -14,14 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Gps")
 public class GpsController {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private DeviceRepository deviceRepository;
     @Autowired
     private GpsRepository gpsRepository;
     @Autowired

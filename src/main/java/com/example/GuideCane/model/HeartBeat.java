@@ -20,14 +20,14 @@ public class HeartBeat {
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
-    private Account deviceCode;
+    private Device deviceCode;
     @Column(name="heartBeatValue")
     private String heartBeatValue;
     @CreationTimestamp
     @Column(name="createTime")
     private Timestamp createTime;
 
-    public HeartBeat(Account deviceCode, String heartBeatValue) {
+    public HeartBeat(Device deviceCode, String heartBeatValue) {
         this.deviceCode = deviceCode;
         this.heartBeatValue = heartBeatValue;
     }

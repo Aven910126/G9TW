@@ -2,9 +2,9 @@ package com.example.GuideCane.controller;
 import java.util.List;
 
 import com.example.GuideCane.dto.EmergencyContactDTO;
-import com.example.GuideCane.dto.SosDTO;
+import com.example.GuideCane.dto.LoginDTO;
 import com.example.GuideCane.model.EmergencyContact;
-import com.example.GuideCane.repository.AccountRepository;
+import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.EmergencyContactRepository;
 import com.example.GuideCane.service.EmergencyContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class EmergencyContactController {
     @Autowired
     private EmergencyContactService emergencyContactService;
     @Autowired
-    private AccountRepository accountRepository;
+    private DeviceRepository deviceRepository;
 
     EmergencyContact e = null;
     @PostMapping("/create")
@@ -61,6 +61,20 @@ public class EmergencyContactController {
             return new ResponseEntity<>(emergencyContact, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+    @PostMapping("/login")
+    public ResponseEntity<EmergencyContact> login(@RequestBody LoginDTO loginDTO) {
+        try{
+            EmergencyContact account = emergencyContactService.login(loginDTO);
+            if(account != null){
+                return new ResponseEntity<>(account, HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
     }
 

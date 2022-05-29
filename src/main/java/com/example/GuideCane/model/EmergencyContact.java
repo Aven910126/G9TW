@@ -16,21 +16,24 @@ public class EmergencyContact {
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
-    private Account deviceCode;
+    private Device deviceCode;
     @Column(name="contactPerson")
     private String contactPerson;
-    @Column(name="contactNo")
-    private String contactNo;
+    @Column(name="contactNumber")
+    private String contactNumber;
     @Column(name="email")
     private String email;
     @Column(name="Relationship")
     private String relationship;
+    @Column(name="password")
+    private String password;
 
-    public EmergencyContact(Account deviceCode, String contactPerson, String contactNo, String relationship,String email) {
+    public EmergencyContact(Device deviceCode, String contactPerson, String contactNumber, String relationship,String email,String password) {
         this.deviceCode = deviceCode;
         this.contactPerson = contactPerson;
-        this.contactNo = contactNo;
+        this.contactNumber = contactNumber;
         this.relationship = relationship;
         this.email = email;
+        this.password = password;
     }
 }

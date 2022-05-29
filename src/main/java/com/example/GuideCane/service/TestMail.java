@@ -24,7 +24,7 @@ public class TestMail {
     JavaMailSender mailSender;
     @Test
     public  void sendToGmail(Gps g, List<EmergencyContact> e) throws Exception {
-        SimpleMailMessage message = new SimpleMailMessage();
+        SimpleMailMessage message = new SimpleMailMessage();//創建新物件
         String latitude = g.getLatitude();
         String longitude = g.getLongitude();
         String location="https://www.google.com/maps?q="+latitude+","+longitude;
@@ -32,7 +32,7 @@ public class TestMail {
         String email;
         for (EmergencyContact i:e){
             email=(i.getEmail());
-            message.setFrom("a1148370488@gmail.com");
+            message.setFrom("a1148370488@gmail.com");//使用自己創造的物件Lod4
             message.setTo(email);
             message.setSubject("測試透過 Gmail 去發信");
             message.setText("點擊開啟位置"+location);

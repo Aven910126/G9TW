@@ -8,7 +8,8 @@ import lombok.*;
 public class EmergencyContactDTO {
     private long deviceCode;
     private String contactPerson;
-    private String contactNo;
+    private String contactNumber;
     private String email;
     private String relationship;
+    private String password;
 }

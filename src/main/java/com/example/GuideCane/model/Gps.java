@@ -19,7 +19,7 @@ public class Gps {
     private int id;
     @OneToOne
     @JoinColumn(name = "devicecode")
-    private Account deviceCode;
+    private Device deviceCode;
     @Column(name="longitude")
     private String longitude;
     @Column(name="latitude")
@@ -30,7 +30,7 @@ public class Gps {
     @Column(name="createTime")
     private Timestamp createTime;
 
-    public Gps(Account deviceCode, String longitude, String latitude,Boolean sosInfo) {
+    public Gps(Device deviceCode, String longitude, String latitude,Boolean sosInfo) {
         this.deviceCode = deviceCode;
         this.longitude = longitude;
         this.latitude = latitude;

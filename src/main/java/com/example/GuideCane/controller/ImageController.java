@@ -1,12 +1,9 @@
 package com.example.GuideCane.controller;
 
-import com.example.GuideCane.dto.HeartbeatDTO;
 import com.example.GuideCane.dto.ImageDTO;
-import com.example.GuideCane.model.HeartBeat;
 import com.example.GuideCane.model.Image;
-import com.example.GuideCane.repository.AccountRepository;
+import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.ImageRepository;
-import com.example.GuideCane.service.HeartBeatService;
 import com.example.GuideCane.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +20,7 @@ public class ImageController {
     @Autowired
     private ImageRepository imageRepository;
     @Autowired
-    private AccountRepository accountRepository;
+    private DeviceRepository deviceRepository;
     @Autowired
     private ImageService imageService;
     @PostMapping("/create")
