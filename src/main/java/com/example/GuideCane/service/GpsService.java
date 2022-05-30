@@ -41,14 +41,13 @@ public class GpsService {
         String longitude = gps.getLongitude();
         String latitude = gps.getLatitude();
         Gps sos = gpsRepository.findMaxTimeGps(gps.getDeviceCode());
-        sos.setSosInfo(true);
         Device devicecode = gps.getDeviceCode();
         if(devicecode != null){
-            Gps g = gpsRepository.save(sos);
             note.setSubject("SOS message");
             note.setContent("Go to the location function to view");
+            note.getData().put("key_1","https://www.google.com.tw/");
             firebaseMessagingService.sendNotification(note,"c4sPMDP0Sgm8j28zJTyJY_:APA91bFN4-PJGS39xkmzAJiMNy9KkH8IPiYkmfQC6z37Tn09zrj6Gnm4nUP2h6i2rWcigppBSf_ufHJGlSW4cV_4x9oQa_AMvkvjArlWd8da8Om6N7oXdqL0zwpWLzI9G72FhKky3OZ9");
-            return g;
+            return gps;
         }
         else{
             return null;

@@ -23,8 +23,13 @@ public class Device {
         this.bind = bind;//使用自己的方法Lod1
     }
 
+    public long getDeviceCode() {
+        return deviceCode;
+    }
+
     public Device(long deviceCode, boolean bind) {
         this.deviceCode = deviceCode;
         this.bind = bind;
     }
+
 }
