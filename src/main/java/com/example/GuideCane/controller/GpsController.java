@@ -46,7 +46,7 @@ public class GpsController {
         }
     }
     @GetMapping("/now/{devicecode}")
-    public ResponseEntity<Gps> nowGps(@PathVariable("devicecode") long devicecode) {
+    public ResponseEntity<Gps> findnowGps(@PathVariable("devicecode") long devicecode) {
         try{
             Gps gps = gpsService.nowGps(devicecode);
             return new ResponseEntity<>(gps, HttpStatus.OK);
