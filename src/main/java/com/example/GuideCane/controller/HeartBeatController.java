@@ -1,7 +1,9 @@
 package com.example.GuideCane.controller;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.GuideCane.dto.HeartbeatDTO;
+import com.example.GuideCane.model.Device;
 import com.example.GuideCane.model.HeartBeat;
 import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.HeartBeatRepository;

@@ -30,7 +30,7 @@ public class Image {
     @Column(name="imagedata")
     private Blob imageData;
     @CreationTimestamp
-    @Column(name="createTime")
+    @Column(name="image_create_Time")
     private Timestamp createTime;
 
 

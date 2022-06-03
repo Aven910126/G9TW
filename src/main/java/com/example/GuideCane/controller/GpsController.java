@@ -1,6 +1,7 @@
 package com.example.GuideCane.controller;
 
 import com.example.GuideCane.dto.GpsDTO;
+import com.example.GuideCane.model.Device;
 import com.example.GuideCane.model.EmergencyContact;
 import com.example.GuideCane.model.Gps;
 import com.example.GuideCane.repository.DeviceRepository;

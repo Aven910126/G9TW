@@ -16,7 +16,7 @@ public class Device {
     @Id
     @Column(name="devicecode")
     private long deviceCode;
-    @Column(name="bind")
+    @Column(name="isbinded")
     private boolean bind;
 
     public void setBind(boolean bind) {

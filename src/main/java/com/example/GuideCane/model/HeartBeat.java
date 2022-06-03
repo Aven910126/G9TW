@@ -24,7 +24,7 @@ public class HeartBeat {
     @Column(name="heartBeatValue")
     private String heartBeatValue;
     @CreationTimestamp
-    @Column(name="createTime")
+    @Column(name="heartBeat_create_Time")
     private Timestamp createTime;
 
     public HeartBeat(Device deviceCode, String heartBeatValue) {

@@ -25,7 +25,7 @@ public class Gps {
     @Column(name="latitude")
     private String latitude;
     @CreationTimestamp
-    @Column(name="createTime")
+    @Column(name="gps_create_Time")
     private Timestamp createTime;
 
     public Gps(Device deviceCode, String longitude, String latitude) {

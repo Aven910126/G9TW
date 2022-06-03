@@ -37,22 +37,6 @@ public class EmergencyContactController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-//    @PostMapping("/sos")
-//    public ResponseEntity<EmergencyContact> sos(@RequestBody SosDTO sosDTO) {
-//        try{
-//            EmergencyContact emergencyContact = emergencyContactService.sos(sosDTO);
-//            e = emergencyContact;
-//            if(emergencyContact == null){
-//                return new ResponseEntity<>(null, HttpStatus.CREATED);
-//            }else{
-//                return new ResponseEntity<>(emergencyContact, HttpStatus.OK);
-//            }
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @GetMapping("/find/{devicecode}")
     public ResponseEntity<List<EmergencyContact>> findEmergencyContact(@PathVariable("devicecode") long devicecode) {
         try{

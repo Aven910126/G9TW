@@ -1,5 +1,6 @@
 package com.example.GuideCane.service;
 
+import com.example.GuideCane.dto.DeviceDTO;
 import com.example.GuideCane.dto.GpsDTO;
 import com.example.GuideCane.model.Device;
 import com.example.GuideCane.model.Gps;
@@ -22,7 +23,6 @@ public class GpsService {
     private DeviceRepository deviceRepository;
     @Autowired
     private FirebaseMessagingService firebaseMessagingService;
-
     private Optional<Device> data;
     public List<Gps> findTodayGps(long devicecode){
         data = deviceRepository.findById(devicecode);
@@ -35,9 +35,6 @@ public class GpsService {
         }
         return listdata;
     }
-
-
-
     public Gps createGps(GpsDTO gpsDTO){
         if(gpsDTO != null){
             String longitude = gpsDTO.getLongitude();
@@ -66,6 +63,4 @@ public class GpsService {
         }
         return value;
     }
-
-
 }

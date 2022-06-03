@@ -17,15 +17,15 @@ public class EmergencyContact {
     @OneToOne
     @JoinColumn(name = "devicecode")
     private Device deviceCode;
-    @Column(name="contactPerson")
+    @Column(name="contact_Name")
     private String contactPerson;
-    @Column(name="contactNumber")
+    @Column(name="contact_Number")
     private String contactNumber;
-    @Column(name="email")
+    @Column(name="contact_Email")
     private String email;
-    @Column(name="Relationship")
+    @Column(name="contact_Relationship")
     private String relationship;
-    @Column(name="password")
+    @Column(name="contact_password")
     private String password;
 
     public EmergencyContact(Device deviceCode, String contactPerson, String contactNumber, String relationship,String email,String password) {
