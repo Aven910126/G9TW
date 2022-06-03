@@ -6,6 +6,7 @@ import com.example.GuideCane.repository.DeviceRepository;
 import com.example.GuideCane.repository.GpsRepository;
 import com.example.GuideCane.service.EmergencyContactService;
 import com.example.GuideCane.service.GpsService;
+import com.example.GuideCane.service.SosService;
 import com.example.GuideCane.service.TestMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("/api/Sos")
 public class SosController {
     @Autowired
-    private GpsService gpsService;
+    private SosService sosService;
     @Autowired
     private EmergencyContactService emergencyContactService;
     @Autowired
@@ -30,11 +31,13 @@ public class SosController {
     @GetMapping("/sos/{devicecode}")
     public ResponseEntity<Gps> createSos(@PathVariable("devicecode") long devicecode){
         try {
-            Gps now = gpsService.nowGps(devicecode);
-            Gps gps = gpsService.createSos(now);
+            Gps nowgps = sosService.nowGps(devicecode);
+            Gps sos = sosService.SoS(nowgps);
             List<EmergencyContact> e = emergencyContactService.findAllEmergencyContact(devicecode);
-            testMail.sendToGmail(now,e);
-            return new ResponseEntity<>(gps, HttpStatus.OK);
+            System.out.println(nowgps);
+            System.out.println(e);
+            testMail.sendToGmail(nowgps,e);
+            return new ResponseEntity<>(sos, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }

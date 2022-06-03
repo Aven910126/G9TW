@@ -10,8 +10,7 @@ import java.sql.Blob;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImageDTO {
+public class ImageResponseDTO {
     private long deviceCode;
-    @Lob
-    private Blob imageData;
+    private String imageData;
 }

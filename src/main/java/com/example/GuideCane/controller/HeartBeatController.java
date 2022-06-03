@@ -15,27 +15,23 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/HeartBeat")
 public class HeartBeatController {
-
     @Autowired
     private HeartBeatRepository heartBeatRepository;
-
     @Autowired
     private DeviceRepository deviceRepository;
-
     @Autowired
     private HeartBeatService heartBeatService;
-
-    @PostMapping("/create")
-    public ResponseEntity<HeartBeat> createHeartBeat(@RequestBody HeartbeatDTO heartbeatDTO) {
+    @GetMapping("/now/{devicecode}")
+    public ResponseEntity<HeartBeat> findnowHeartBeat(@PathVariable("devicecode") long devicecode) {
         try{
-            HeartBeat heartBeat = heartBeatService.createHeartBeat(heartbeatDTO);
+            HeartBeat heartBeat = heartBeatService.nowHeartBeat(devicecode);
             return new ResponseEntity<>(heartBeat, HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
     @GetMapping("/find/{devicecode}")
-    public ResponseEntity<List<HeartBeat>> findHeartBeat(@PathVariable("devicecode") long devicecode) {
+    public ResponseEntity<List<HeartBeat>> findAllHeartBeat(@PathVariable("devicecode") long devicecode) {
         try{
             List<HeartBeat> heartBeat = heartBeatService.findAllHeartBeat(devicecode);
             return new ResponseEntity<>(heartBeat, HttpStatus.OK);
@@ -43,13 +39,13 @@ public class HeartBeatController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-    @GetMapping("/now/{devicecode}")
-    public ResponseEntity<HeartBeat> nowHeartBeat(@PathVariable("devicecode") long devicecode) {
+    @PostMapping("/create")
+    public ResponseEntity<HeartBeat> createHeartBeat(@RequestBody HeartbeatDTO heartbeatDTO) {
         try{
-            HeartBeat heartBeat = heartBeatService.nowHeartBeat(devicecode);
+            HeartBeat heartBeat = heartBeatService.createHeartBeat(heartbeatDTO);
             return new ResponseEntity<>(heartBeat, HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

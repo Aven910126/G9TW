@@ -24,16 +24,13 @@ public class Gps {
     private String longitude;
     @Column(name="latitude")
     private String latitude;
-    @Column(name="sosInfo")
-    private Boolean sosInfo;
     @CreationTimestamp
     @Column(name="createTime")
     private Timestamp createTime;
 
-    public Gps(Device deviceCode, String longitude, String latitude,Boolean sosInfo) {
+    public Gps(Device deviceCode, String longitude, String latitude) {
         this.deviceCode = deviceCode;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.sosInfo = sosInfo;
     }
 }

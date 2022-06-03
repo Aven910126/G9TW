@@ -27,27 +27,34 @@ public class HeartBeatService {
 
     private int notify_frequency;
     private String msg="HeartBeat Abnormal reminder";
+    private String token ="c4sPMDP0Sgm8j28zJTyJY_:APA91bFN4-PJGS39xkmzAJiMNy9KkH8IPiYkmfQC6z37Tn09zrj6Gnm4nUP2h6i2rWcigppBSf_ufHJGlSW4cV_4x9oQa_AMvkvjArlWd8da8Om6N7oXdqL0zwpWLzI9G72FhKky3OZ9";
     public HeartBeat createHeartBeat(HeartbeatDTO heartbeatDTO) throws FirebaseMessagingException {
-        String heartBeatValue=heartbeatDTO.getHeartBeatValue();
-        Optional<Device> devicecode = deviceRepository.findById(heartbeatDTO.getDeviceCode());
-        if(devicecode != null){
-            HeartBeat heartBeat = heartBeatRepository.save(new HeartBeat(devicecode.get(),heartBeatValue));
-            if(Integer.parseInt(heartBeatValue) < 60 || Integer.parseInt(heartBeatValue) >= 100){
-                try {
-                    note.setSubject(msg);
-                    note.setContent("Abnormal heart rhythm value is"+heartBeatValue);
-                    firebaseMessagingService.sendNotification(note,"c4sPMDP0Sgm8j28zJTyJY_:APA91bFN4-PJGS39xkmzAJiMNy9KkH8IPiYkmfQC6z37Tn09zrj6Gnm4nUP2h6i2rWcigppBSf_ufHJGlSW4cV_4x9oQa_AMvkvjArlWd8da8Om6N7oXdqL0zwpWLzI9G72FhKky3OZ9");
+        if(heartbeatDTO != null){
+            String heartBeatValue=heartbeatDTO.getHeartBeatValue();
+            Optional<Device> devicecode = deviceRepository.findById(heartbeatDTO.getDeviceCode());
+            if(devicecode != null){
+                HeartBeat heartBeat = heartBeatRepository.save(new HeartBeat(devicecode.get(),heartBeatValue));
+                if(Integer.parseInt(heartBeatValue) < 60 || Integer.parseInt(heartBeatValue) >= 100){
+                    try {
+                        note.setSubject(msg);
+                        note.setContent("Abnormal heart rhythm value is"+heartBeatValue);
+                        firebaseMessagingService.sendNotification(note,token);
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
                 }
-                catch (Exception e){
-                    System.out.println(e);
-                }
+                return heartBeat;
             }
-            return heartBeat;
+            else{
+                return null;
+            }
         }
         else{
             return null;
         }
     }
+    //Lod4
     public List<HeartBeat> findAllHeartBeat(long devicecode){
         Optional<Device> data = deviceRepository.findById(devicecode);
         List<HeartBeat> listdata;

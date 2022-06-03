@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Gps")
 public class GpsController {
-
     @Autowired
     private DeviceRepository deviceRepository;
     @Autowired
@@ -27,8 +26,6 @@ public class GpsController {
     private GpsService gpsService;
     @Autowired
     private EmergencyContactService emergencyContactService;
-    @Autowired
-    private TestMail testMail;
     @PostMapping("/create")
     public ResponseEntity<Gps> createGps(@RequestBody GpsDTO gpsDTO){
         try {
@@ -38,44 +35,6 @@ public class GpsController {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/sos/{devicecode}")
-    public ResponseEntity<Gps> createSos(@PathVariable("devicecode") long devicecode){
-        try {
-            Gps now = gpsService.nowGps(devicecode);
-            Gps gps = gpsService.createSos(now);
-            List<EmergencyContact> e = emergencyContactService.findAllEmergencyContact(devicecode);
-            testMail.sendToGmail(now,e);
-            return new ResponseEntity<>(gps,HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-//    @GetMapping("/sostrigger/{devicecode}")
-//    public ResponseEntity<Gps> sostrigger(@PathVariable("devicecode") long devicecode) {
-//        try{
-//            Gps gps = gpsService.nowGps(devicecode);
-//            List<EmergencyContact> e = emergencyContactService.findAllEmergencyContact(devicecode);
-//            if(gps.getSosInfo()){
-//                testMail.sendToGmail(gps,e);
-//                return new ResponseEntity<>(gps, HttpStatus.OK);
-//            }
-//            else{
-//                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//            }
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//        }
-//    }
-//    @PatchMapping("/relievesos/{devicecode}")
-//    public ResponseEntity<Gps> relievesos(@PathVariable("devicecode") long devicecode){
-//        try {
-//            Gps a = gpsService.nowGps(devicecode);
-//            Gps gps = gpsService.relievesos(a);
-//            return new ResponseEntity<>(gps,HttpStatus.OK);
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
 
     @GetMapping("/find/{devicecode}")
     public ResponseEntity<List<Gps>> findTodayGps(@PathVariable("devicecode") long devicecode) {
