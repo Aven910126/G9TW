@@ -44,7 +44,7 @@ public class HeartBeatService {
                         System.out.println(e);
                     }
                 }
-                return heartBeat;
+                    return heartBeat;
             }
             else{
                 return null;

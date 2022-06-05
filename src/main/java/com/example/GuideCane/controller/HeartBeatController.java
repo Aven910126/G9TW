@@ -44,8 +44,8 @@ public class HeartBeatController {
     @PostMapping("/create")
     public ResponseEntity<HeartBeat> createHeartBeat(@RequestBody HeartbeatDTO heartbeatDTO) {
         try{
-            HeartBeat heartBeat = heartBeatService.createHeartBeat(heartbeatDTO);
-            return new ResponseEntity<>(heartBeat, HttpStatus.OK);
+                HeartBeat heartBeat = heartBeatService.createHeartBeat(heartbeatDTO);
+                return new ResponseEntity<>(heartBeat, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

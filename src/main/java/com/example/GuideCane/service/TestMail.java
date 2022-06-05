@@ -23,14 +23,18 @@ public class TestMail {
     @Autowired
     JavaMailSender mailSender;
 
-    private void backupMail(String mail,String content) {
+    private final List<String> emailList = new ArrayList<>();
+
+    private void backupMail(String content) {
         SimpleMailMessage message = new SimpleMailMessage();
+        for (String str :emailList){
         message.setFrom("a1148370488@gmail.com");
         message.setTo("a1148370488@gmail.com");
         message.setSubject("已寄信通知");
-        message.setText("已對"+ mail +"寄出\n內容:"+ content);
+        message.setText("已對"+ str +"寄出\n內容:"+ content);
 
         mailSender.send(message);
+        }
     }
     @Test
     public void sendToGmail(Gps g, List<EmergencyContact> e) throws Exception {
@@ -41,7 +45,6 @@ public class TestMail {
 
         System.out.println(g.getDeviceCode().getDeviceCode());
         System.out.println(e);
-        List<String> emailList = new ArrayList<>();
         for (EmergencyContact i : e) {
             System.out.println(i.getDeviceCode().getDeviceCode());
             if (i.getDeviceCode().getDeviceCode() == g.getDeviceCode().getDeviceCode()) {
@@ -56,8 +59,8 @@ public class TestMail {
                 message.setSubject("測試透過 Gmail 去發信");
                 message.setText("點擊開啟位置" + location);
                 mailSender.send(message);
-                backupMail(str,"點擊開啟位置"+location);//Lod1使用自己的方法
             }
         }
+        backupMail("點擊開啟位置"+location);//Lod1使用自己的方法
     }
 }

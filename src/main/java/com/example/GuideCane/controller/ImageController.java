@@ -32,7 +32,7 @@ public class ImageController {
         }
     }
     @GetMapping("/now/{devicecode}")
-    public ResponseEntity<ImageResponseDTO> nowImg(@PathVariable("devicecode") long devicecode) {
+    public ResponseEntity<ImageResponseDTO> findsosImg(@PathVariable("devicecode") long devicecode) {
         try{
             Image image = new Image();
             ImageResponseDTO img = imageService.nowImage(devicecode,image);

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface GpsRepository extends JpaRepository<Gps,Long> {
     List<Gps> findAll();
     List<Gps> findByDeviceCode(Device DeviceCode);
-    @Query(value = "SELECT *  FROM `gps` WHERE `devicecode` = :DeviceCode ORDER BY create_time DESC LIMIT 0 , 1",nativeQuery = true)
+    @Query(value = "SELECT *  FROM `gps` WHERE `devicecode` = :DeviceCode ORDER BY gps_create_time DESC LIMIT 0 , 1",nativeQuery = true)
     Gps findMaxTimeGps(Device DeviceCode);
     @Query(value = "SELECT * FROM `gps` WHERE `devicecode` = :DeviceCode ORDER BY CURDATE()",nativeQuery = true)
     List<Gps> findTodayGps(Device DeviceCode);
